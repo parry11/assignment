@@ -9,6 +9,7 @@ Before running above commands, add a file named "firestore.js" under folder src/
 
 Add following content in file "firestore.js"
 
+**
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore/lite";
 
@@ -25,4 +26,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 export { db };
+**
 
