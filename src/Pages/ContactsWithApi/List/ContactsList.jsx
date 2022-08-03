@@ -23,8 +23,8 @@ const ContactsList = ({ contactList, loader, deleteContact }) => {
     <CContainer>
       <CCard className={`mb-3 border-top-primary  border-top-3`}>
         <CCardHeader className="d-flex justify-content-between align-items-center">
-          <CCardTitle className="mb-0">Contacts List</CCardTitle>
-          <Link to="/add">
+          <CCardTitle className="mb-0">Contacts List With API</CCardTitle>
+          <Link to="/contact-with-api/add">
             <CButton color="primary">
               <CIcon icon={cilPlus} size="sm" /> Add Contact
             </CButton>
@@ -46,9 +46,8 @@ const ContactsList = ({ contactList, loader, deleteContact }) => {
                 </CTableRow>
               </CTableHead>
               <CTableBody>
-                {!loader ? (
-                  contactList && contactList.length > 0 ? (
-                    contactList.map((item) => (
+                {contactList && contactList.length > 0
+                  ? contactList.map((item) => (
                       <CTableRow color="light" key={item.id}>
                         <CTableHeaderCell scope="row">
                           {item.firstName}
@@ -58,7 +57,7 @@ const ContactsList = ({ contactList, loader, deleteContact }) => {
                         <CTableDataCell>{item.email}</CTableDataCell>
                         <CTableDataCell>{item.phoneNumber}</CTableDataCell>
                         <CTableDataCell className="text-center">
-                          <Link to={`/${item.id}/edit`}>
+                          <Link to={`/contact-with-api/${item.id}/edit`}>
                             <CButton className="me-2" color="primary">
                               <CIcon icon={cilPencil} size="sm" />
                             </CButton>
@@ -72,17 +71,17 @@ const ContactsList = ({ contactList, loader, deleteContact }) => {
                         </CTableDataCell>
                       </CTableRow>
                     ))
-                  ) : (
-                    <CTableRow color="light">
-                      <CTableHeaderCell
-                        scope="row"
-                        colSpan={6}
-                        className="text-center"
-                      >
-                        No data found
-                      </CTableHeaderCell>
-                    </CTableRow>
-                  )
+                  : ""}
+                {!loader && contactList && contactList.length === 0 ? (
+                  <CTableRow color="light">
+                    <CTableHeaderCell
+                      scope="row"
+                      colSpan={6}
+                      className="text-center"
+                    >
+                      No data found
+                    </CTableHeaderCell>
+                  </CTableRow>
                 ) : (
                   ""
                 )}
@@ -91,7 +90,6 @@ const ContactsList = ({ contactList, loader, deleteContact }) => {
           </CCardText>
         </CCardBody>
       </CCard>
-      <Link to="/contact-with-api">Go to contact with firebase api</Link>
     </CContainer>
   );
 };
